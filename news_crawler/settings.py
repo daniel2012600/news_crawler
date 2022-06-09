@@ -1,3 +1,5 @@
+from datetime import datetime
+
 # Scrapy settings for news_crawler project
 #
 # For simplicity, this file contains only settings considered important or
@@ -15,6 +17,15 @@ MYSQL_HOST = 'localhost'
 MYSQL_DATABASE = 'wz_news_db'
 MYSQL_USERNAME = 'root'
 MYSQL_PASSWORD = 'root'
+
+
+# 文件及路径，log目录需要先建好
+today = datetime.now()
+log_file_path = "logs/wz_news_{}_{}_{}.log".format(today.year, today.month, today.day)
+
+# 日志输出
+LOG_LEVEL = 'ERROR'
+LOG_FILE = log_file_path
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent

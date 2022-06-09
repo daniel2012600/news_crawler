@@ -6,7 +6,7 @@
 
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
-from scrapy import log
+import logging
 from news_crawler import settings
 import pymysql
 
@@ -26,7 +26,7 @@ class NewsCrawlerPipeline:
  
     def process_item(self, item, spider):
         try:
-            self.cursor.execute("""select * from new_table where news_title = %s""", item["news_title"])   #是否已經在資料庫內
+            self.cursor.execute("""select * from new_table where publish_date = %s""", item["publish_date"])   #是否已經在資料庫內
             ret = self.cursor.fetchone()
             if ret:
                 pass
@@ -40,7 +40,7 @@ class NewsCrawlerPipeline:
             return item
         except Exception as error:
             self.connect.rollback()  #發生錯誤，則退回上一次資料庫狀態
-            log(error)
+            logging.error(error)
             
 
     def close_spider(self, spider):
