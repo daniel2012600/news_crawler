@@ -6,9 +6,10 @@ from ..settings import DEFAULT_REQUEST_HEADERS
 from pathlib import Path
 import re
 
+
 class WzNewsApiSpider(scrapy.Spider):
     name = 'wz_news_api'
-    id_value = 32000 # 預設爬取ＩＤ
+    id_value = 32200 # 預設爬取ＩＤ
 
     def __init__(self):
         self.time_params = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
@@ -69,3 +70,4 @@ class WzNewsApiSpider(scrapy.Spider):
             pass            
 
         return last_craw_id
+
