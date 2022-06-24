@@ -1,5 +1,5 @@
 from datetime import datetime
-
+import os
 # Scrapy settings for news_crawler project
 #
 # For simplicity, this file contains only settings considered important or
@@ -13,11 +13,10 @@ BOT_NAME = 'news_crawler'
 
 SPIDER_MODULES = ['news_crawler.spiders']
 NEWSPIDER_MODULE = 'news_crawler.spiders'
-MYSQL_HOST = 'localhost'
-MYSQL_DATABASE = 'wz_news_db'
-MYSQL_USERNAME = 'root'
-MYSQL_PASSWORD = 'root'
-
+MYSQL_HOST = os.getenv("MYSQL_HOST")
+MYSQL_DATABASE = os.getenv("MYSQL_DATABASE")
+MYSQL_USERNAME = os.getenv("MYSQL_USERNAME")
+MYSQL_PASSWORD = os.getenv("MYSQL_PASSWORD")
 
 # 文件及路径，log目录需要先建好
 today = datetime.now()

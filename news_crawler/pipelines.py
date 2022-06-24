@@ -26,7 +26,7 @@ class NewsCrawlerPipeline:
  
     def process_item(self, item, spider):
         try:
-            self.cursor.execute("""select * from new_table where publish_date = %s""", item["publish_date"])   #是否已經在資料庫內
+            self.cursor.execute("""SELECT * FROM new_table WHERE publish_date = %s""", item["publish_date"])   #是否已經在資料庫內
             ret = self.cursor.fetchone()
             if ret:
                 pass
