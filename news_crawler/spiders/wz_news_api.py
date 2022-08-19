@@ -9,20 +9,21 @@ import re
 
 class WzNewsApiSpider(scrapy.Spider):
     name = 'wz_news_api'
-    id_value = 32200 # 預設爬取ＩＤ
+    id_value = 32430 # 預設爬取ＩＤ
 
-    def __init__(self):
+    def __init__(self, input_id_value = None):
+        self.id_value =int(input_id_value)  if input_id_value  else 32420# 預設爬取ＩＤ
         self.time_params = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         self.url = f"https://pwa.zhibo16.live/pwa-api/index.php?g=H5&m=News&a=newsDetail&_={self.time_trans(self.time_params)}"
 
     def start_requests(self):
-        log_dir = Path('./logs/')
-        last_craw_id = self.check_log_data(log_dir)
-        # 檢視是否有上次爬取的ＩＤ·若沒有則用預設的
-        self.id_value = int(last_craw_id) if last_craw_id != '' else self.id_value
+
         yield scrapy.FormRequest(self.url, formdata={ 'id': str(self.id_value)  }, headers =  DEFAULT_REQUEST_HEADERS )
 
     def parse(self, response):
+        print("######################")
+        print(f"目前爬的ＩＤ：{self.id_value}")
+        print("######################")
         resource_json = response.json()   
         if resource_json['data']['detail']['post_title'] != '':
             # 建立容器·將要擷取的資訊放進去

@@ -1,6 +1,11 @@
 from datetime import datetime
+<<<<<<< HEAD
 import os 
 # Scrapy ettings for news_crawler project
+=======
+import os
+# Scrapy settings for news_crawler project
+>>>>>>> ccd0a1e10b8896c4710739927c2f6bdaf5d34bd0
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -13,7 +18,14 @@ BOT_NAME = 'news_crawler'
 
 SPIDER_MODULES = ['news_crawler.spiders']
 NEWSPIDER_MODULE = 'news_crawler.spiders'
+<<<<<<< HEAD
 
+=======
+MYSQL_HOST = os.getenv("MYSQL_HOST")
+MYSQL_DATABASE = os.getenv("MYSQL_DATABASE")
+MYSQL_USERNAME = os.getenv("MYSQL_USERNAME")
+MYSQL_PASSWORD = os.getenv("MYSQL_PASSWORD")
+>>>>>>> ccd0a1e10b8896c4710739927c2f6bdaf5d34bd0
 
 if os.getenv("MYSQL_HOST"):
     MYSQL_HOST = os.getenv("MYSQL_HOST")
@@ -40,7 +52,7 @@ LOG_FILE = log_file_path
 # USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36"
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
